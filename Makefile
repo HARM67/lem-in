@@ -3,7 +3,8 @@ INCLUDES=./includes
 INCLUDES_FT_PRINTF=./ft_printf/includes
 COMPILER = gcc
 LIB=./ft_printf/
-SRCS=main.c app.c mtrx.c identity.c find_link.c compare.c path.c print_data.c
+SRCS=main.c app.c mtrx.c identity.c find_link.c compare.c path.c print_data.c \
+		operation.c
 SRC_PATH=./srcs/
 OBJ=$(SRCS:.c=.o)
 FLAG=-g

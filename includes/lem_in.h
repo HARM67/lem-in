@@ -35,8 +35,12 @@ typedef struct			s_app
 	t_mtrx				identity;
 	t_path				*first_path;
 	t_path				*last_path;
+	t_path				*full_first;
+	t_path				*full_last;
 	unsigned long		*used;
+	unsigned long		*solution;
 	unsigned int		nbr_path;
+	unsigned int		nbr_full;
 	unsigned int		size;
 	unsigned int		nbr_long;
 	unsigned int		in;
@@ -82,6 +86,16 @@ void					print_data(unsigned long *data, unsigned int size);
 ** path.c
 */
 void					push_path(t_app *app, unsigned int unit);
+void					travel_path(t_app *app, unsigned long *old,
+							unsigned int unit);
 void					remove_path(t_app *app, t_path *path);
 void					print_paths(t_app *app);
+void					is_solution(t_app *app, t_path *path);
+void					print_paths(t_app *app);
+
+/*
+** operation.c
+*/
+void					make_or(unsigned long *d2, unsigned long *d1,
+							unsigned int nbr_long);
 #endif
