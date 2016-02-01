@@ -23,16 +23,15 @@ char	**ft_strsplit(char const *s, char c)
 	while (*s == c)
 		s++;
 	size = ft_strcount(s, c);
-	arr = (char**)malloc(sizeof(char*) * (size + 1));
+	arr = (char**)ft_memalloc(sizeof(char*) * (size + 1));
 	if (*s == 0)
 		*arr = 0;
 	else
 		while (i < size)
 		{
 			size2 = ft_strclen(s, c);
-			arr[i] = (char*)malloc(sizeof(char) * (size2 + 1));
+			arr[i] = (char*)ft_memalloc(sizeof(char) * (size2 + 1));
 			ft_strncpy(arr[i], s, size2);
-			ft_putendl(s);
 			s = ft_strnext(s, c);
 			i++;
 		}

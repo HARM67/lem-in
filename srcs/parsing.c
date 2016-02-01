@@ -90,10 +90,9 @@ static int	read_tube(t_app *app, char *line)
 	tube = ft_strsplit(line, '-');
 	a = what_nbr(app, tube[0]);
 	b = what_nbr(app, tube[1]);
-	ft_printf("\n%s  ==>>%s, %s\n",line,  tube[0], tube[1]);
 	if (a == -1 || b == -1)
 		return (-1);
-	ft_printf("%s %s\n", app->block_array[a]->name, app->block_array[b]->name);
+	//ft_printf("%s %s\n", app->block_array[a]->name, app->block_array[b]->name);
 	make_or(&app->mtrx.data[a], &app->identity.data[b], app->nbr_long);
 	make_or(&app->mtrx.data[b], &app->identity.data[a], app->nbr_long);
 	return (0);
@@ -113,6 +112,7 @@ void		read_file(t_app *app)
 	}
 	list_to_array(app);
 	init_mtrx(&app->mtrx, app->size);
+	app->nbr_long = app->mtrx.nbr_long;
 	init_mtrx(&app->identity, app->size);
 	init_mtrx_identity(&app->identity);
 	if (line)
