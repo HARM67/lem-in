@@ -79,8 +79,6 @@ void			remove_path(t_app *app, t_path *path)
 
 void			is_solution(t_app *app, t_path *path)
 {
-	ft_printf("je suis appele pour :");
-	print_data(path->content, app->nbr_long);
 	if (app->first_path == path)
 		app->first_path = path->next;
 	if (app->last_path == path)
@@ -116,7 +114,6 @@ void			print_full(t_app *app)
 	nbr_full = app->nbr_full;
 	while (i < nbr_full && tmp)
 	{
-		ft_printf("%3u : ", tmp->unit);
 		print_data(tmp->content, app->nbr_long);
 		tmp = tmp->next;
 		i++;

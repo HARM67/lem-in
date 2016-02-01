@@ -35,37 +35,16 @@ void	find_link(t_app *app, unsigned int nbr)
 			if (and_test(&app->mtrx.data[i], &app->identity.data[paths->unit], app->nbr_long) &&
 			(and_test(app->used, &app->identity.data[i], app->nbr_long) == 0 || i == app->out))
 			{
-			/*
-				if (and_test(paths->content, &app->identity.data[app->in], app->nbr_long)
-				&& and_test(paths->content, &app->identity.data[app->out], app->nbr_long))
-				{
-					last = paths;
-					ft_printf("J'ai trouve %u est lie a %u\n", paths->unit, i);
-					is_solution(app, paths);
-					temoin = 1;
-					if (last->next)
-						paths = last->next;
-					else
-						break ;
-				}
-				else
-				{
-			*/		ft_printf("%u est lie a %u\n", paths->unit, i);
-	///				push_path(app, i);
-					travel_path(app, paths->content, i);
-			//	}
+//				ft_printf("%u est lie a %u\n", paths->unit, i);
+				travel_path(app, paths->content, i);
 			}
 			i++;
 		}
 		i = 0;
 		j++;
-		//if (temoin == 0)
-		//{
-			last = paths;
-			remove_path(app, last);
-			paths = paths->next;
-		//}
-		//temoin = 0;
+		last = paths;
+		remove_path(app, last);
+		paths = paths->next;
 	}
 	while (paths)
 	{
@@ -74,7 +53,7 @@ void	find_link(t_app *app, unsigned int nbr)
 		&& and_test(paths->content, &app->identity.data[app->out], app->nbr_long))
 		{
 			last = paths;
-			ft_printf("J'ai trouve %u est lie a %u\n", paths->unit, i);
+//			ft_printf("J'ai trouve %u est lie a %u\n", paths->unit, i);
 			is_solution(app, paths);
 			paths = last->next;
 		}
