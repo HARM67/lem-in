@@ -32,6 +32,7 @@ char	**ft_strsplit(char const *s, char c)
 			size2 = ft_strclen(s, c);
 			arr[i] = (char*)malloc(sizeof(char) * (size2 + 1));
 			ft_strncpy(arr[i], s, size2);
+			ft_putendl(s);
 			s = ft_strnext(s, c);
 			i++;
 		}

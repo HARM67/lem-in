@@ -14,10 +14,7 @@
 
 void	init_app(t_app *app)
 {
-	app->size = 12;
-	init_mtrx(&app->mtrx, app->size);
-	init_mtrx(&app->identity, app->size);
-	init_mtrx_identity(&app->identity);
+	read_file(app);
 	app->nbr_long = app->mtrx.nbr_long;
 	app->used = (unsigned long*)ft_memalloc(sizeof(unsigned long) *
 			app->nbr_long);
@@ -30,14 +27,16 @@ void	run_app(t_app *app)
 	t_mtrx *mtrx;
 	t_mtrx *identity;
 
-	app->in = 0;
-	app->out = 6;
+	print_mtrx(&app->mtrx);
+	ft_putchar('\n');
+	//print_mtrx(&app->identity);
+	//print_block(app);
 	make_or(app->solution, &app->identity.data[app->in], app->nbr_long);
 	make_or(app->solution, &app->identity.data[app->out], app->nbr_long);
 	print_data(app->solution, app->nbr_long);
-	ft_putchar('\n');
 	push_path(app, app->in);
 	//print_paths(app);
+	/*
 	mtrx = &app->mtrx;
 	identity = &app->identity;
 	mtrx->data[0] = 0x802;
@@ -64,5 +63,5 @@ void	run_app(t_app *app)
 	find_link(app, 0);
 	find_link(app, 0);
 	find_link(app, 0);
-	print_full(app);
+	print_full(app);*/
 }

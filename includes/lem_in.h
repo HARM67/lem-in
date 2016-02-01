@@ -13,13 +13,25 @@
 #ifndef LEM_IN_H
 # define LEM_IN_H
 # include "ft_printf.h"
+# include "get_next_line.h"
+
+typedef struct			s_block
+{
+	struct s_block		*next;
+	struct s_block		*previous;
+	char				*name;
+	int					x;
+	int					y;
+	int					is_start;
+	int					is_end;
+}						t_block;
 
 typedef struct			s_path
 {
-	unsigned long		*content;
-	unsigned int		unit;
 	struct s_path		*next;
 	struct s_path		*previous;
+	unsigned long		*content;
+	unsigned int		unit;
 }						t_path;
 
 typedef struct			s_mtrx
@@ -37,6 +49,10 @@ typedef struct			s_app
 	t_path				*last_path;
 	t_path				*full_first;
 	t_path				*full_last;
+	t_block				*first_block;
+	t_block				*last_block;
+	t_block				**block_array;
+	unsigned int		read_mode;
 	unsigned long		*used;
 	unsigned long		*solution;
 	unsigned int		nbr_path;
@@ -98,4 +114,22 @@ void					print_paths(t_app *app);
 */
 void					make_or(unsigned long *d2, unsigned long *d1,
 							unsigned int nbr_long);
+
+/*
+** parsing.c
+*/
+void					read_file(t_app *app);
+
+/*
+** block.c
+*/
+int						what_nbr(t_app *app, char *name);
+t_block					*new_block(char *name, int x, int y);
+void					insert_block(t_app *app, t_block *block);
+void					print_block(t_app *app);
+
+/*
+** verif.c
+*/
+int						verif_number(char *nbr);
 #endif
