@@ -30,3 +30,4 @@ int		and_test(unsigned long *d1, unsigned long *d2, unsigned int nbr_long)
 	//ft_printf("je return 0\n\n");
 	return (0);
 }
+

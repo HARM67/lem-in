@@ -110,10 +110,18 @@ void					is_solution(t_app *app, t_path *path);
 void					print_paths(t_app *app);
 
 /*
+** path2.c
+*/
+void					remove_inout(t_app *app);
+
+/*
 ** operation.c
 */
 void					make_or(unsigned long *d2, unsigned long *d1,
 							unsigned int nbr_long);
+void					make_and(unsigned long *d1, unsigned long *d2,
+							unsigned int nbr_long);
+void					make_reverse(unsigned long *d, unsigned int nbr_long);
 
 /*
 ** parsing.c

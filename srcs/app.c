@@ -21,6 +21,7 @@ void	init_app(t_app *app)
 			app->nbr_long);
 	make_or(app->solution, &app->identity.data[app->in], app->nbr_long);
 	make_or(app->solution, &app->identity.data[app->out], app->nbr_long);
+	make_reverse(app->solution, app->nbr_long);
 	push_path(app, app->in);
 }
 
@@ -35,5 +36,6 @@ void	run_app(t_app *app)
 	{
 		find_link(app, 0);
 	}
+	remove_inout(app);
 	print_full(app);
 }
