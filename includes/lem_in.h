@@ -32,6 +32,7 @@ typedef struct			s_path
 	struct s_path		*previous;
 	unsigned long		*content;
 	unsigned int		unit;
+	unsigned int		size;
 }						t_path;
 
 typedef struct			s_mtrx
@@ -61,6 +62,7 @@ typedef struct			s_app
 	unsigned int		nbr_long;
 	unsigned int		in;
 	unsigned int		out;
+	unsigned int		current_iteration;
 	int					ac;
 	char				**av;
 }						t_app;
