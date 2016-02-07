@@ -35,7 +35,10 @@ void	run_app(t_app *app)
 	while (app->first_path)
 	{
 		find_link(app, 0);
+		print_paths(app);
 	}
-	remove_inout(app);
+	//remove_inout(app);
+	print_mtrx(app, &app->mtrx);
+		print_paths(app);
 	print_full(app);
 }

@@ -77,7 +77,7 @@ void					run_app(t_app *app);
 ** mtrx.h
 */
 void					init_mtrx(t_mtrx *mtrx, unsigned int size);
-void					print_mtrx(t_mtrx *mtrx);
+void					print_mtrx(t_app *app, t_mtrx *mtrx);
 
 /*
 ** identity.c

@@ -23,7 +23,7 @@ void	init_mtrx(t_mtrx *mtrx, unsigned int size)
 			mtrx->nbr_long * size);
 }
 
-void	print_mtrx(t_mtrx *mtrx)
+void	print_mtrx(t_app *app, t_mtrx *mtrx)
 {
 	unsigned int	size;
 	unsigned int	i;
@@ -32,8 +32,12 @@ void	print_mtrx(t_mtrx *mtrx)
 	i = 0;
 	while (i < size)
 	{
+		if (i == app->in)
+			ft_printf("{FG_GREEN}");
+		else if (i == app->out)
+			ft_printf("{FG_RED}");
 		print_data(&mtrx->data[i], mtrx->nbr_long);
-		//ft_printf("%0*b\n", size, mtrx->data[i]);
+			ft_printf("{EOC}");
 		i++;
 	}
 }
