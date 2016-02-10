@@ -33,6 +33,7 @@ typedef struct			s_path
 	unsigned long		*content;
 	unsigned int		unit;
 	unsigned int		size;
+	unsigned int		ant_use;
 }						t_path;
 
 typedef struct			s_mtrx
@@ -50,6 +51,8 @@ typedef struct			s_app
 	t_path				*last_path;
 	t_path				*full_first;
 	t_path				*full_last;
+	t_path				**path_selected;
+	t_path				**path_selected_temp;
 	t_block				*first_block;
 	t_block				*last_block;
 	t_block				**block_array;
@@ -58,11 +61,16 @@ typedef struct			s_app
 	unsigned long		*solution;
 	unsigned int		nbr_path;
 	unsigned int		nbr_full;
+	unsigned int		nbr_ant;
+	unsigned int		f_num;
 	unsigned int		size;
 	unsigned int		nbr_long;
 	unsigned int		in;
 	unsigned int		out;
 	unsigned int		current_iteration;
+	unsigned int		selected_size;
+	unsigned int		best_comb;
+	unsigned int		best_size;
 	int					ac;
 	char				**av;
 }						t_app;
@@ -142,4 +150,15 @@ void					print_block(t_app *app);
 ** verif.c
 */
 int						verif_number(char *nbr);
+
+/*
+** calc_f_num.c
+*/
+unsigned int			calc_f_nums(t_app *app);
+
+/*
+** choose_paths.c
+*/
+void					choose_rec(t_app*app, t_path *path, unsigned int iteration);
+void					choose_paths(t_app *app);
 #endif
