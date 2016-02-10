@@ -28,3 +28,18 @@ int		and_test(unsigned long *d1, unsigned long *d2, unsigned int nbr_long)
 	return (0);
 }
 
+int		and_test_reverse(unsigned long *d1, unsigned long *d2, unsigned int nbr_long)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < nbr_long)
+	{
+		if (d1[i] & ~d2[i])
+		{
+			return (1);
+			}
+		i++;
+	}
+	return (0);
+}

@@ -15,6 +15,7 @@
 # include "ft_printf.h"
 # include "get_next_line.h"
 
+
 typedef struct			s_block
 {
 	struct s_block		*next;
@@ -34,7 +35,14 @@ typedef struct			s_path
 	unsigned int		unit;
 	unsigned int		size;
 	unsigned int		ant_use;
+	unsigned int		stroke;
 }						t_path;
+
+typedef struct			s_end_path
+{
+	unsigned int		id_block;
+	unsigned int		current_ant;
+}						t_end_path;
 
 typedef struct			s_mtrx
 {
@@ -53,6 +61,8 @@ typedef struct			s_app
 	t_path				*full_last;
 	t_path				**path_selected;
 	t_path				**path_selected_temp;
+	t_end_path			**firsts_end;
+	t_end_path			**lasts_end;
 	t_block				*first_block;
 	t_block				*last_block;
 	t_block				**block_array;
@@ -102,6 +112,8 @@ void					find_link(t_app *app, unsigned int nbr);
 */
 int						and_test(unsigned long *d1, unsigned long *d2,
 		unsigned int nbr_long);
+int						and_test_reverse(unsigned long *d1, unsigned long *d2,
+		unsigned int nbr_long);
 
 /*
 ** print_data.c
@@ -129,9 +141,13 @@ void					remove_inout(t_app *app);
 */
 void					make_or(unsigned long *d2, unsigned long *d1,
 							unsigned int nbr_long);
+void					make_and_reverse(unsigned long *d1, unsigned long *d2,
+							unsigned int nbr_long);
 void					make_and(unsigned long *d1, unsigned long *d2,
 							unsigned int nbr_long);
 void					make_reverse(unsigned long *d, unsigned int nbr_long);
+void					make_cpy(unsigned long *d1, unsigned *d2,
+							unsigned int nbr_long);
 
 /*
 ** parsing.c
@@ -160,5 +176,4 @@ unsigned int			calc_f_nums(t_app *app);
 ** choose_paths.c
 */
 void					choose_rec(t_app*app, t_path *path, unsigned int iteration);
-void					choose_paths(t_app *app);
 #endif

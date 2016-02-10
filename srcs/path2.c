@@ -13,8 +13,3 @@ void	remove_inout(t_app *app)
 		tmp = tmp->next;
 	}
 }
-
-void	choose_path(t_app *app)
-{
-			
-}

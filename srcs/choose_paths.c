@@ -1,6 +1,6 @@
 #include "lem_in.h"
 
-int	check_all(t_app *app, t_path *path, unsigned int iteration)
+static int	check_all(t_app *app, t_path *path, unsigned int iteration)
 {
 	t_path			**tmp;
 	unsigned int	i;
@@ -16,7 +16,7 @@ int	check_all(t_app *app, t_path *path, unsigned int iteration)
 	return (1);
 }
 
-void	reg_best(t_app *app, unsigned int iteration)
+static void	reg_best(t_app *app, unsigned int iteration)
 {
 	unsigned int	i;
 
@@ -33,7 +33,7 @@ void	reg_best(t_app *app, unsigned int iteration)
 	}
 }
 
-void	check_better(t_app *app, unsigned int iteration)
+static void	check_better(t_app *app, unsigned int iteration)
 {
 	unsigned int	best_tmp;
 
@@ -45,11 +45,10 @@ void	check_better(t_app *app, unsigned int iteration)
 		app->best_size = iteration + 1;
 		reg_best(app, iteration + 1);
 		app->best_comb = best_tmp;
-		ft_printf("%u\n", best_tmp);
 	}
 }
 
-void	choose_rec(t_app *app, t_path *path, unsigned int iteration)
+void		choose_rec(t_app *app, t_path *path, unsigned int iteration)
 {
 	unsigned int	i;
 	unsigned int	j;
@@ -73,12 +72,4 @@ void	choose_rec(t_app *app, t_path *path, unsigned int iteration)
 		i++;
 	}
 	app->path_selected_temp[iteration] = 0;
-}
-
-void	choose_paths(t_app *app)
-{
-	unsigned int	i;
-
-	i = 0;
-	choose_rec(app, app->full_first, 0);
 }
