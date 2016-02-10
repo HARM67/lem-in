@@ -81,6 +81,9 @@ typedef struct			s_app
 	unsigned int		selected_size;
 	unsigned int		best_comb;
 	unsigned int		best_size;
+	unsigned int		current_ant;
+	unsigned int		max_stroke;
+	unsigned char		temoin;
 	int					ac;
 	char				**av;
 }						t_app;
@@ -129,7 +132,7 @@ void					travel_path(t_app *app, unsigned long *old,
 void					remove_path(t_app *app, t_path *path);
 void					print_paths(t_app *app);
 void					is_solution(t_app *app, t_path *path);
-void					print_paths(t_app *app);
+void					print_full(t_app *app);
 
 /*
 ** path2.c

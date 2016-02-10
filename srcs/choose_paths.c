@@ -55,7 +55,6 @@ void		choose_rec(t_app *app, t_path *path, unsigned int iteration)
 	t_path			*tmp;
 
 	app->path_selected_temp[iteration] = path;
-	ft_printf("Je suis sur %u\n", path->size);
 	check_better(app, iteration);
 	if (iteration == app->nbr_full - 1)
 		return ;
@@ -65,9 +64,7 @@ void		choose_rec(t_app *app, t_path *path, unsigned int iteration)
 	while (tmp && i < app->nbr_full)
 	{
 		if (check_all(app, tmp, iteration))
-		{
 			choose_rec(app, tmp, iteration + 1);
-		}
 		tmp = tmp->next;
 		i++;
 	}

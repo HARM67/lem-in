@@ -24,6 +24,7 @@ void	init_app(t_app *app)
 	make_reverse(app->solution, app->nbr_long);
 	push_path(app, app->in);
 	app->best_comb = 0xffffffff;
+	app->current_ant = 1;
 
 	app->nbr_ant = 10;
 }
@@ -64,7 +65,6 @@ void	print_array(t_app *app)
 
 	i = 0;
 	j = 0;
-	//ft_printf("%u %u\n", i, j);
 	while (i < app->best_size)
 	{
 		while (j < app->path_selected[i]->size)
@@ -98,11 +98,9 @@ void	make_end_path_array(t_app *app, unsigned id)
 		make_and(tmp, &app->mtrx.data[current], app->nbr_long);
 		current = what_id(app, tmp);
 		app->firsts_end[id][i].id_block = current;
-		print_data(tmp, app->nbr_long);
 		make_and_reverse(app->path_selected[id]->content, tmp, app->nbr_long);
 		i++;
 	}
-	ft_putendl("");
 	free(tmp);
 }
 
@@ -143,6 +141,65 @@ void	calc_stroke(t_app *app)
 	{
 		tmp = app->path_selected[i];
 		tmp->stroke = tmp->size + tmp->ant_use - 1;
+		if (tmp->stroke > app->max_stroke)
+			app->max_stroke = tmp->stroke;
+		i++;
+	}
+}
+
+void	move_ant(t_app *app, unsigned int id, unsigned int iteration)
+{
+	int	i;
+
+	i = (int)app->path_selected[id]->size - 1;
+	if (iteration >= app->path_selected[id]->stroke)
+		return ;
+	while (i >= 0)
+	{
+		if (app->firsts_end[id][i].current_ant != 0)
+		{
+			if (i == (int)app->path_selected[id]->size - 1)
+			{
+				i--;
+				continue ;
+			}
+			if (app->temoin)
+				ft_putchar(' ');
+			app->firsts_end[id][i + 1].current_ant = app->firsts_end[id][i].current_ant;
+			app->firsts_end[id][i].current_ant = 0;
+			ft_printf("L%u-%s", app->firsts_end[id][i + 1].current_ant, app->block_array[app->firsts_end[id][i + 1].id_block]->name);
+			app->temoin = 1;
+		}
+		if (iteration < app->path_selected[id]->ant_use && i == 0)
+		{
+			if (app->temoin)
+				ft_putchar(' ');
+			app->firsts_end[id][i].current_ant = app->current_ant;
+			ft_printf("L%u-%s", app->firsts_end[id][i].current_ant, app->block_array[app->firsts_end[id][i].id_block]->name);
+			app->current_ant++;
+			app->temoin = 1;
+		}
+		i--;
+	}
+}
+
+void	move_ants(t_app *app)
+{
+	unsigned int	i;
+	unsigned int	j;
+
+	i = 0;
+	j = 0;
+	while (i < app->max_stroke)
+	{
+		app->temoin = 0;
+		while (j < app->best_size)
+		{
+			move_ant(app, j, i);
+			j++;
+		}
+		j = 0;
+		ft_putchar('\n');
 		i++;
 	}
 }
@@ -161,12 +218,9 @@ void	run_app(t_app *app)
 	app->path_selected = (t_path**)ft_memalloc(sizeof(t_path*) * app->nbr_full);
 	app->path_selected_temp = (t_path**)ft_memalloc(sizeof(t_path*) * app->nbr_full);
 	remove_inout(app);
-	print_mtrx(app, &app->mtrx);
 	choose_rec(app, app->full_first, 0);
 	calc_stroke(app);
 	insert_out(app);
 	make_end_paths_array(app);
-	print_array(app);
-	print_selected(app);
-	ft_printf("%u", what_id(app, app->full_first->next->next->content));
+	move_ants(app);
 }

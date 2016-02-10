@@ -33,13 +33,14 @@ void	find_link(t_app *app, unsigned int nbr)
 	{
 		while (i < size)
 		{
+		
 			if (and_test(&app->mtrx.data[i], &app->identity.data[paths->unit], app->nbr_long) &&
 			(and_test(paths->content, &app->identity.data[i], app->nbr_long) == 0 || i == app->out))
 				travel_path(app, paths->content, i);
-			/*if (and_test(&app->mtrx.data[i], &app->identity.data[paths->unit], app->nbr_long) &&
+	/*		if (and_test(&app->mtrx.data[i], &app->identity.data[paths->unit], app->nbr_long) &&
 			(and_test(app->used, &app->identity.data[i], app->nbr_long) == 0 || i == app->out))
 				travel_path(app, paths->content, i);
-		*/	i++;
+	*/		i++;
 		}
 		i = 0;
 		j++;

@@ -8,8 +8,8 @@ SRCS=main.c app.c mtrx.c identity.c find_link.c compare.c path.c path2.c \
 	calc_f_num.c choose_paths.c
 SRC_PATH=./srcs/
 OBJ=$(SRCS:.c=.o)
-FLAG=-g
-#-Wall -Werror -Wextra
+FLAG=-g -Wall
+#-Werror -Wextra
 
 all: $(NAME)
 

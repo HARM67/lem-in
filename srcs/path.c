@@ -99,7 +99,7 @@ void			is_solution(t_app *app, t_path *path)
 		app->full_last->next->previous = app->full_last;
 		app->full_last = app->full_last->next;
 	}
-	app->full_last->next = 0;
+	//app->full_last->next = 0;
 	app->nbr_path--;
 	app->nbr_full++;
 }
