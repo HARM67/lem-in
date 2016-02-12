@@ -20,7 +20,7 @@ t_block	*new_block(char *name, int x, int y)
 
 	rt = (t_block*)ft_memalloc(sizeof(t_block));
 	rt->name = ft_strdup(name);
-	rt->x	= x;
+	rt->x = x;
 	rt->y = y;
 	return (rt);
 }

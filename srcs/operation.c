@@ -48,7 +48,7 @@ void	make_reverse(unsigned long *d, unsigned int nbr_long)
 	}
 }
 
-void	make_cpy(unsigned long *d1, unsigned *d2, unsigned int nbr_long)
+void	make_cpy(unsigned long *d1, unsigned long *d2, unsigned int nbr_long)
 {
 	unsigned int	i;
 

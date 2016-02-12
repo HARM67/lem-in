@@ -5,7 +5,8 @@ COMPILER = gcc
 LIB=./ft_printf/
 SRCS=main.c app.c mtrx.c identity.c find_link.c compare.c path.c path2.c \
 	print_data.c operation.c parsing.c get_next_line.c block.c verif.c \
-	calc_f_num.c choose_paths.c
+	calc_f_num.c choose_paths.c parsing2.c parsing3.c ant.c end_path.c \
+	other.c
 SRC_PATH=./srcs/
 OBJ=$(SRCS:.c=.o)
 FLAG=-g -Wall

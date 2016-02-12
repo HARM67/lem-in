@@ -86,6 +86,8 @@ typedef struct			s_app
 	unsigned char		temoin;
 	int					ac;
 	char				**av;
+	unsigned char		have_start;
+	unsigned char		have_end;
 }						t_app;
 
 /*
@@ -149,7 +151,7 @@ void					make_and_reverse(unsigned long *d1, unsigned long *d2,
 void					make_and(unsigned long *d1, unsigned long *d2,
 							unsigned int nbr_long);
 void					make_reverse(unsigned long *d, unsigned int nbr_long);
-void					make_cpy(unsigned long *d1, unsigned *d2,
+void					make_cpy(unsigned long *d1, unsigned long *d2,
 							unsigned int nbr_long);
 
 /*
@@ -157,6 +159,17 @@ void					make_cpy(unsigned long *d1, unsigned *d2,
 */
 void					read_file(t_app *app);
 
+/*
+** parsing2.c
+*/
+void					prepare_data(t_app *app);
+void					list_to_array(t_app *app);
+
+/*
+** parsing3.c
+*/
+void 					read_case(t_app *app, char *line, unsigned int *n);
+int						read_tube(t_app *app, char *line);
 /*
 ** block.c
 */
@@ -179,4 +192,20 @@ unsigned int			calc_f_nums(t_app *app);
 ** choose_paths.c
 */
 void					choose_rec(t_app*app, t_path *path, unsigned int iteration);
+
+/*
+** ant.c
+*/
+void					move_ants(t_app *app);
+
+/*
+** end_path.c
+*/
+void					make_end_paths_array(t_app *app);
+
+/*
+** other.c
+*/
+void					insert_out(t_app *app);
+void					calc_stroke(t_app *app);
 #endif
