@@ -37,5 +37,6 @@ void		read_file(t_app *app)
 		free(line);
 		line = 0;
 	}
-	//print_mtrx(app, &app->mtrx);
+	if (line)
+		free(line);
 }

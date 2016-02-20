@@ -88,5 +88,8 @@ int	read_tube(t_app *app, char *line)
 		app->read_mode = 5;
 	make_or(&app->mtrx.data[a * nbr_long], &app->identity.data[b * nbr_long], nbr_long);
 	make_or(&app->mtrx.data[b * nbr_long], &app->identity.data[a * nbr_long], nbr_long);
+	while (count--)
+		free(tube[count]);
+	free(tube);
 	return (0);
 }

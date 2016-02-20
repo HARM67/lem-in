@@ -6,7 +6,7 @@
 /*   By: mfroehly <mfroehly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/31 06:14:07 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/02/20 13:15:41 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/02/20 17:20:39 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,15 @@ void	run_app(t_app *app)
 	t_mtrx *identity;
 
 	identity = &app->identity;
-	make_or(app->used, &identity->data[app->first_path->unit], app->nbr_long);
-	//print_mtrx(app, &app->mtrx);
+	make_or(app->used, &identity->data[app->first_path->unit * app->nbr_long], app->nbr_long);
 	while (app->first_path)
-	{
 		find_link(app, 0);
-		//print_paths(app);
-		//print_data(app->used, app->nbr_long);
-		//ft_putchar('\n');
-	}
 	if (!app->nbr_full)
 	{
 		ft_printf("Pas trouve de chemin valide");
 		exit (0);
 	}
+	//print_mtrx(app, &app->mtrx);
 	app->path_selected = (t_path**)ft_memalloc(sizeof(t_path*) * app->nbr_full);
 	app->path_selected_temp = (t_path**)ft_memalloc(sizeof(t_path*) * app->nbr_full);
 	remove_inout(app);
@@ -54,6 +49,7 @@ void	run_app(t_app *app)
 	choose_rec(app, app->full_first, 0);
 	calc_stroke(app);
 	insert_out(app);
+	//print_full(app);
 	make_end_paths_array(app);
 	move_ants(app);
 }

@@ -7,7 +7,7 @@ void	insert_out(t_app *app)
 	i = 0;
 	while (i < app->best_size)
 	{
-		make_or(app->path_selected[i]->content, &app->identity.data[app->out],
+		make_or(app->path_selected[i]->content, &app->identity.data[app->out * app->nbr_long],
 			app->nbr_long);
 		i++;
 	}

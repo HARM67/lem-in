@@ -6,7 +6,7 @@
 /*   By: mfroehly <mfroehly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/31 06:57:36 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/02/20 13:13:02 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/02/20 20:31:49 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,17 @@ void	find_link(t_app *app, unsigned int nbr)
 //				travel_path(app, paths->content, i);
 			if (and_test(&app->mtrx.data[i * nbr_long], &app->identity.data[paths->unit * nbr_long], nbr_long) &&
 			(and_test(app->used, &app->identity.data[i * nbr_long], nbr_long) == 0 || i == app->out))
+			{
+				//print_data(paths->content, app->nbr_long);
 				travel_path(app, paths->content, i);
+			}
 			i++;
 		}
 		i = 0;
 		j++;
 		last = paths;
-		remove_path(app, last);
 		paths = paths->next;
+		remove_path(app, last);
 	}
 	while (paths)
 	{

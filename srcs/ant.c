@@ -49,7 +49,7 @@ void	move_ants(t_app *app)
 
 	i = 0;
 	j = 0;
-	ft_putchar('\n');
+//	ft_putchar('\n');
 	while (i < app->max_stroke)
 	{
 		app->temoin = 0;

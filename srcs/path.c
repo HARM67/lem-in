@@ -6,7 +6,7 @@
 /*   By: mfroehly <mfroehly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/31 07:16:58 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/01/31 08:28:55 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/02/20 14:19:49 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void			push_path(t_app *app, unsigned int unit)
 		app->last_path = app->last_path->next;
 	}
 	app->last_path->unit = unit;
-	make_or(app->last_path->content, &app->identity.data[unit], app->nbr_long);
+	make_or(app->last_path->content, &app->identity.data[unit * app->nbr_long], app->nbr_long);
 	app->nbr_path++;
 }
 
@@ -57,7 +57,7 @@ void			travel_path(t_app *app, unsigned long *old, unsigned int unit)
 		app->last_path = app->last_path->next;
 	}
 	make_or(app->last_path->content, old, app->nbr_long);
-	make_or(app->last_path->content, &app->identity.data[unit], app->nbr_long);
+	make_or(app->last_path->content, &app->identity.data[unit * app->nbr_long], app->nbr_long);
 	app->last_path->unit = unit;
 	app->nbr_path++;
 }

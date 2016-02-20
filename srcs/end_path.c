@@ -7,7 +7,7 @@ static unsigned int	what_id(t_app *app, unsigned long *data)
 	i = 0;
 	while (i < app->size)
 	{
-		if (and_test(data, &app->identity.data[i], app->nbr_long))
+		if (and_test(data, &app->identity.data[i * app->nbr_long], app->nbr_long))
 			return (i);
 			i++;
 	}
@@ -33,12 +33,7 @@ static void	make_end_path_array(t_app *app, unsigned id)
 	{
 		make_cpy(tmp, app->path_selected[id]->content, app->nbr_long);
 		make_and(tmp, &app->mtrx.data[current * app->nbr_long], app->nbr_long);
-		print_data(app->path_selected[id]->content, app->nbr_long);
-		print_data(&app->mtrx.data[current * app->nbr_long], app->nbr_long);
-		print_data(tmp, app->nbr_long);
 		current = what_id(app, tmp);
-		ft_printf("current = %d\n", current);
-		exit (1);
 		app->firsts_end[id][i].id_block = current;
 		make_and_reverse(app->path_selected[id]->content, tmp, app->nbr_long);
 		i++;
