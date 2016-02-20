@@ -32,7 +32,7 @@ static int	read_other(t_app *app, char *array, unsigned int n)
 	if (ft_strncmp(array, "##start", 7) == 0 && !app->read_mode)
 		app->read_mode = 1;
 	else if (ft_strncmp(array, "##end", 5) == 0 && !app->read_mode)
-		app->read_mode = 2;
+	app->read_mode = 2;
 	else if (array[0] == '#' || array[0] == 'L')
 		;
 	else
