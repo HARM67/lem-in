@@ -6,7 +6,7 @@
 /*   By: mfroehly <mfroehly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/31 07:27:14 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/01/31 07:40:23 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/02/20 12:09:11 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ void	print_data(unsigned long *data, unsigned int size)
 {
 	unsigned int i;
 
-	i = 0;
-	while (i < size)
+	i = size;
+	while (i > 0)
 	{
-		ft_printf("%0*b", sizeof(unsigned long) * 8, data[i]);
-		i++;
+		ft_printf("%0*lb", sizeof(unsigned long) * 8, data[i - 1]);
+		i--;
 	}
 	ft_putchar('\n');
 }

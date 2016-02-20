@@ -6,7 +6,7 @@
 /*   By: mfroehly <mfroehly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/31 06:57:36 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/01/31 08:32:40 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/02/20 13:13:02 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	find_link(t_app *app, unsigned int nbr)
 	unsigned int	j;
 	unsigned int	size;
 	unsigned int	nbr_path;
+	unsigned int	nbr_long;
 
 	i = 0;
 	j = 0;
@@ -29,18 +30,19 @@ void	find_link(t_app *app, unsigned int nbr)
 	size = app->mtrx.size;
 	paths = app->first_path;
 	nbr_path = app->nbr_path;
+	nbr_long = app->nbr_long;
 	while (paths && j < nbr_path)
 	{
 		while (i < size)
 		{
 		
-			if (and_test(&app->mtrx.data[i], &app->identity.data[paths->unit], app->nbr_long) &&
-			(and_test(paths->content, &app->identity.data[i], app->nbr_long) == 0 || i == app->out))
+//			if (and_test(&app->mtrx.data[i * nbr_long], &app->identity.data[paths->unit * nbr_long], app->nbr_long) &&
+//			(and_test(paths->content, &app->identity.data[i * nbr_long], app->nbr_long) == 0 || i == app->out))
+//				travel_path(app, paths->content, i);
+			if (and_test(&app->mtrx.data[i * nbr_long], &app->identity.data[paths->unit * nbr_long], nbr_long) &&
+			(and_test(app->used, &app->identity.data[i * nbr_long], nbr_long) == 0 || i == app->out))
 				travel_path(app, paths->content, i);
-	/*		if (and_test(&app->mtrx.data[i], &app->identity.data[paths->unit], app->nbr_long) &&
-			(and_test(app->used, &app->identity.data[i], app->nbr_long) == 0 || i == app->out))
-				travel_path(app, paths->content, i);
-	*/		i++;
+			i++;
 		}
 		i = 0;
 		j++;
@@ -50,9 +52,9 @@ void	find_link(t_app *app, unsigned int nbr)
 	}
 	while (paths)
 	{
-		make_or(app->used, &app->identity.data[paths->unit], app->nbr_long);
-		if (and_test(paths->content, &app->identity.data[app->in], app->nbr_long)
-		&& and_test(paths->content, &app->identity.data[app->out], app->nbr_long))
+		make_or(app->used, &app->identity.data[paths->unit * nbr_long], app->nbr_long);
+		if (and_test(paths->content, &app->identity.data[app->in * nbr_long], app->nbr_long)
+		&& and_test(paths->content, &app->identity.data[app->out * nbr_long], app->nbr_long))
 		{
 			last = paths;
 			is_solution(app, paths);

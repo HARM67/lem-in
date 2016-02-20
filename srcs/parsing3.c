@@ -69,9 +69,11 @@ int	read_tube(t_app *app, char *line)
 {
 	char			**tube;
 	unsigned int	count;
+	unsigned int	nbr_long;
 	int				a;
 	int				b;
 
+	nbr_long = app->nbr_long;
 	count = ft_strcount(line, '-');
 	if (count != 2 || line[0] == '#' || line[0] == 'L')
 	{
@@ -84,7 +86,7 @@ int	read_tube(t_app *app, char *line)
 	b = what_nbr(app, tube[1]);
 	if (a == -1 || b == -1)
 		app->read_mode = 5;
-	make_or(&app->mtrx.data[a], &app->identity.data[b], app->nbr_long);
-	make_or(&app->mtrx.data[b], &app->identity.data[a], app->nbr_long);
+	make_or(&app->mtrx.data[a * nbr_long], &app->identity.data[b * nbr_long], nbr_long);
+	make_or(&app->mtrx.data[b * nbr_long], &app->identity.data[a * nbr_long], nbr_long);
 	return (0);
 }

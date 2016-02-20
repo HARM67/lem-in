@@ -33,8 +33,9 @@ void		read_file(t_app *app)
 			read_tube(app, line);
 		if (app->read_mode == 5)
 			break ;
-		ft_putendl(line);
+		//ft_putendl(line);
 		free(line);
 		line = 0;
 	}
+	//print_mtrx(app, &app->mtrx);
 }

@@ -11,5 +11,6 @@ void	remove_inout(t_app *app)
 	{
 		make_and(tmp->content, app->solution, app->nbr_long);
 		tmp = tmp->next;
+		i++;
 	}
 }

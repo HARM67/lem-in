@@ -28,7 +28,7 @@ unsigned int	calc_f_nums(t_app *app)
 	i = 0;
 	max = 0;;
 	tmp = app->path_selected_temp;
-	while (i < app->selected_size)
+	while (i < app->selected_size && i < app->nbr_full)
 	{
 		calc_f_num(app, tmp[i]);
 		if (i < tmp[i]->ant_use % app->selected_size)

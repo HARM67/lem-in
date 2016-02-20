@@ -6,7 +6,7 @@
 /*   By: mfroehly <mfroehly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/31 06:34:43 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/01/31 06:50:42 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/02/20 11:58:25 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,26 @@
 void	init_mtrx_identity(t_mtrx *mtrx)
 {
 	unsigned int	i;
+	unsigned int	j;
 	unsigned long	nbr;
+	unsigned long	nbr_long;
 	unsigned int	size;
 
 	i = 0;
 	nbr = 1;
+	nbr_long = mtrx->nbr_long;
 	size = mtrx->size;
+	j = 0;
+	ft_printf("%d\n", nbr_long);
 	while (i < size)
 	{
-		mtrx->data[i] = nbr;
+		mtrx->data[i * nbr_long + j] = nbr;
 		nbr <<= 1;
 		i++;
+		if (i == 64)
+		{
+			nbr = 1;
+			j++;
+		}
 	}
 }

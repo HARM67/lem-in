@@ -6,7 +6,7 @@
 /*   By: mfroehly <mfroehly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/31 06:14:07 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/01/31 08:31:38 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/02/20 13:15:41 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	init_app(t_app *app)
 			app->nbr_long);
 	app->solution = (unsigned long*)ft_memalloc(sizeof(unsigned long) *
 			app->nbr_long);
-	make_or(app->solution, &app->identity.data[app->in], app->nbr_long);
-	make_or(app->solution, &app->identity.data[app->out], app->nbr_long);
+	make_or(app->solution, &app->identity.data[app->in * app->nbr_long], app->nbr_long);
+	make_or(app->solution, &app->identity.data[app->out * app->nbr_long], app->nbr_long);
 	make_reverse(app->solution, app->nbr_long);
 	push_path(app, app->in);
 	app->best_comb = 0xffffffff;
@@ -34,11 +34,23 @@ void	run_app(t_app *app)
 
 	identity = &app->identity;
 	make_or(app->used, &identity->data[app->first_path->unit], app->nbr_long);
+	//print_mtrx(app, &app->mtrx);
 	while (app->first_path)
+	{
 		find_link(app, 0);
+		//print_paths(app);
+		//print_data(app->used, app->nbr_long);
+		//ft_putchar('\n');
+	}
+	if (!app->nbr_full)
+	{
+		ft_printf("Pas trouve de chemin valide");
+		exit (0);
+	}
 	app->path_selected = (t_path**)ft_memalloc(sizeof(t_path*) * app->nbr_full);
 	app->path_selected_temp = (t_path**)ft_memalloc(sizeof(t_path*) * app->nbr_full);
 	remove_inout(app);
+	//print_full(app);
 	choose_rec(app, app->full_first, 0);
 	calc_stroke(app);
 	insert_out(app);
