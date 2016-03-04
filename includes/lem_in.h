@@ -6,7 +6,7 @@
 /*   By: mfroehly <mfroehly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/30 19:16:29 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/03/04 14:16:51 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/03/04 15:12:12 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define LEM_IN_H
 # include "ft_printf.h"
 # include "get_next_line.h"
-
 
 typedef struct			s_block
 {
@@ -131,7 +130,7 @@ void					print_data(unsigned long *data, unsigned int size);
 void					push_path(t_app *app, unsigned int unit);
 void					travel_path(t_app *app, unsigned long *old,
 							unsigned int unit);
-void					remove_path(t_app *app, t_path *path);
+t_path					*remove_path(t_app *app, t_path *path);
 void					print_paths(t_app *app);
 void					is_solution(t_app *app, t_path *path);
 void					print_full(t_app *app);
@@ -168,7 +167,7 @@ void					list_to_array(t_app *app);
 /*
 ** parsing3.c
 */
-void 					read_case(t_app *app, char *line);
+void					read_case(t_app *app, char *line);
 int						read_tube(t_app *app, char *line);
 /*
 ** block.c
@@ -191,7 +190,8 @@ unsigned int			calc_f_nums(t_app *app);
 /*
 ** choose_paths.c
 */
-void					choose_rec(t_app*app, t_path *path, unsigned int iteration);
+void					choose_rec(t_app*app, t_path *path,
+							unsigned int iteration);
 
 /*
 ** ant.c
@@ -208,7 +208,6 @@ void					make_end_paths_array(t_app *app);
 */
 void					insert_out(t_app *app);
 void					calc_stroke(t_app *app);
-
 
 /*
 ** put_error.c

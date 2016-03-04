@@ -6,7 +6,7 @@
 /*   By: mfroehly <mfroehly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/31 07:16:58 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/03/04 13:46:39 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/03/04 15:05:49 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,11 @@ void			travel_path(t_app *app, unsigned long *old, unsigned int unit)
 	app->nbr_path++;
 }
 
-void			remove_path(t_app *app, t_path *path)
+t_path			*remove_path(t_app *app, t_path *path)
 {
+	t_path	*rt;
+
+	rt = path->next;
 	if (app->first_path == path)
 		app->first_path = path->next;
 	if (app->last_path == path)
@@ -78,6 +81,7 @@ void			remove_path(t_app *app, t_path *path)
 	free(path->content);
 	free(path);
 	app->nbr_path--;
+	return (rt);
 }
 
 void			is_solution(t_app *app, t_path *path)
