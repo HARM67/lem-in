@@ -6,7 +6,7 @@
 /*   By: mfroehly <mfroehly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/31 06:14:07 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/02/20 17:20:39 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/03/04 06:59:36 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ void	run_app(t_app *app)
 	while (app->first_path)
 		find_link(app, 0);
 	if (!app->nbr_full)
-	{
-		ft_printf("Pas trouve de chemin valide");
-		exit (0);
-	}
+		put_error("Pas trouve de chemin valide");
 	//print_mtrx(app, &app->mtrx);
 	app->path_selected = (t_path**)ft_memalloc(sizeof(t_path*) * app->nbr_full);
 	app->path_selected_temp = (t_path**)ft_memalloc(sizeof(t_path*) * app->nbr_full);

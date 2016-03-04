@@ -3,7 +3,7 @@
 void	prepare_data(t_app *app)
 {
 	if (app->size < 1 || !app->have_start || !app->have_end)
-		exit(1);
+		put_error("Error : map invalide");
 	list_to_array(app);
 	init_mtrx(&app->mtrx, app->size);
 	app->nbr_long = app->mtrx.nbr_long;

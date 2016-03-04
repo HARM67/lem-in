@@ -30,14 +30,32 @@ static int	read_block(t_app *app, char **array, unsigned int nbr)
 static int	read_other(t_app *app, char *array, unsigned int n)
 {
 	if (ft_strncmp(array, "##start", 7) == 0 && !app->read_mode)
+	{
+		if (app->have_start)
+			put_error("Error : Il y a plusieur ##start");
 		app->read_mode = 1;
+	}
 	else if (ft_strncmp(array, "##end", 5) == 0 && !app->read_mode)
-	app->read_mode = 2;
+	{
+		if (app->have_end)
+			put_error("Error : Il y a plusieur ##end");
+		app->read_mode = 2;
+	}
 	else if (array[0] == '#' || array[0] == 'L')
 		;
 	else
 		return (0);
 	return (1);
+}
+
+static void	clean_spaces(char *str)
+{
+	while (*str)
+	{
+		if (*str == ' ' || *str == '\t')
+			*str = 0;
+		str++;
+	}
 }
 
 void read_case(t_app *app, char *line, unsigned int *n)
@@ -82,10 +100,18 @@ int	read_tube(t_app *app, char *line)
 		return (-1);
 	}
 	tube = ft_strsplit(line, '-');
+	clean_spaces(tube[0]);
+	clean_spaces(tube[1]);
 	a = what_nbr(app, tube[0]);
 	b = what_nbr(app, tube[1]);
 	if (a == -1 || b == -1)
+	{
 		app->read_mode = 5;
+		while (count--)
+			free(tube[count]);
+		free(tube);
+		return (1);
+	}
 	make_or(&app->mtrx.data[a * nbr_long], &app->identity.data[b * nbr_long], nbr_long);
 	make_or(&app->mtrx.data[b * nbr_long], &app->identity.data[a * nbr_long], nbr_long);
 	while (count--)

@@ -11,6 +11,10 @@ static void	move_ant2(t_app *app, unsigned int id, unsigned int iteration, int i
 			app->block_array[app->firsts_end[id][i].id_block]->name);
 		app->current_ant++;
 		app->temoin = 1;
+		if (i == (int)app->path_selected[id]->size - 1)
+		{
+			app->firsts_end[id][i].current_ant = 0;
+		}
 	}
 }
 
@@ -25,6 +29,7 @@ static void	move_ant(t_app *app, unsigned int id, unsigned int iteration)
 		{
 			if (i == (int)app->path_selected[id]->size - 1)
 			{
+				app->firsts_end[id][i].current_ant = 0;
 				i--;
 				continue ;
 			}

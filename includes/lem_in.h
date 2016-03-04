@@ -6,7 +6,7 @@
 /*   By: mfroehly <mfroehly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/30 19:16:29 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/01/31 08:24:29 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/03/04 07:02:42 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,4 +208,10 @@ void					make_end_paths_array(t_app *app);
 */
 void					insert_out(t_app *app);
 void					calc_stroke(t_app *app);
+
+
+/*
+** put_error.c
+*/
+void					put_error(char *str);
 #endif
