@@ -6,7 +6,7 @@
 /*   By: mfroehly <mfroehly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/30 19:16:29 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/03/04 15:12:12 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/03/04 15:23:42 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void					init_mtrx_identity(t_mtrx *mtrx);
 /*
 ** find_link.c
 */
-void					find_link(t_app *app, unsigned int nbr);
+void					find_link(t_app *app);
 
 /*
 ** compare.c

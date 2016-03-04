@@ -6,7 +6,7 @@
 /*   By: mfroehly <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 14:11:28 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/03/04 14:21:30 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/03/04 15:50:54 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	list_to_array(t_app *app)
 	i = 0;
 	tmp = app->first_block;
 	app->block_array = (t_block**)ft_memalloc(sizeof(t_block*) * app->size);
+	if (!app->block_array)
+		put_error("Error malloc");
 	while (tmp && i < app->size)
 	{
 		app->block_array[i] = tmp;

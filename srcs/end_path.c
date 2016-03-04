@@ -6,7 +6,7 @@
 /*   By: mfroehly <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 14:25:25 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/03/04 14:25:55 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/03/04 15:43:53 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ static void			make_end_path_array(t_app *app, unsigned id)
 	current = app->in;
 	tmp = (unsigned long*)ft_memalloc(sizeof(unsigned long) * app->nbr_long);
 	if (tmp == 0)
-		exit(1);
+		put_error("Error malloc");
 	app->firsts_end[id] = (t_end_path*)ft_memalloc(sizeof(t_end_path) *
 		app->path_selected[id]->size);
 	if (app->firsts_end[id] == 0)
-		exit(1);
+		put_error("Error malloc");
 	while (i < app->path_selected[id]->size)
 	{
 		make_cpy(tmp, app->path_selected[id]->content, app->nbr_long);
@@ -62,7 +62,7 @@ void				make_end_paths_array(t_app *app)
 	app->firsts_end = (t_end_path**)ft_memalloc(sizeof(t_end_path*) *
 		app->best_size);
 	if (app->firsts_end == 0)
-		exit(1);
+		put_error("Error malloc");
 	while (i < app->best_size)
 	{
 		make_end_path_array(app, i);

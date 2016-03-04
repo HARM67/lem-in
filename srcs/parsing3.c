@@ -6,7 +6,7 @@
 /*   By: mfroehly <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 14:12:10 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/03/04 14:17:48 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/03/04 15:24:49 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	read_block(t_app *app, char **array, unsigned int nbr)
 	return (1);
 }
 
-static int	read_other(t_app *app, char *array, unsigned int n)
+static int	read_other(t_app *app, char *array)
 {
 	if (ft_strncmp(array, "##start", 7) == 0 && !app->read_mode)
 	{
@@ -71,7 +71,7 @@ void		read_case(t_app *app, char *line)
 	i = 0;
 	rt = 0;
 	count = ft_strcount(line, ' ');
-	if (read_other(app, line, n))
+	if (read_other(app, line))
 		;
 	else if (count == 3)
 	{

@@ -6,7 +6,7 @@
 /*   By: mfroehly <mfroehly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/31 06:57:36 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/03/04 15:11:12 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/03/04 15:23:30 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static void	fl_loop(t_app *app, t_path *paths)
 	}
 }
 
-void		find_link(t_app *app, unsigned int nbr)
+void		find_link(t_app *app)
 {
 	t_path			*paths;
 	unsigned int	i;

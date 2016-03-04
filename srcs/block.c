@@ -6,7 +6,7 @@
 /*   By: mfroehly <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 14:29:42 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/03/04 14:29:43 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/03/04 15:49:28 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		what_nbr(t_app *app, char *name)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < app->size)
@@ -31,6 +31,8 @@ t_block	*new_block(char *name, int x, int y)
 	t_block	*rt;
 
 	rt = (t_block*)ft_memalloc(sizeof(t_block));
+	if (!rt)
+		put_error("Error malloc");
 	rt->name = ft_strdup(name);
 	rt->x = x;
 	rt->y = y;
