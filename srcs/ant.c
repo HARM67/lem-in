@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ant.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mfroehly <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/04 14:30:43 by mfroehly          #+#    #+#             */
+/*   Updated: 2016/03/04 14:31:09 by mfroehly         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
-static void	move_ant2(t_app *app, unsigned int id, unsigned int iteration, int i)
+static void	move_ant2(t_app *app, unsigned int id, unsigned int iteration,
+		int i)
 {
 	if (iteration < app->path_selected[id]->ant_use && i == 0)
 	{
@@ -47,14 +60,13 @@ static void	move_ant(t_app *app, unsigned int id, unsigned int iteration)
 	}
 }
 
-void	move_ants(t_app *app)
+void		move_ants(t_app *app)
 {
 	unsigned int	i;
 	unsigned int	j;
 
 	i = 0;
 	j = 0;
-//	ft_putchar('\n');
 	while (i < app->max_stroke)
 	{
 		app->temoin = 0;
@@ -69,4 +81,3 @@ void	move_ants(t_app *app)
 		i++;
 	}
 }
-

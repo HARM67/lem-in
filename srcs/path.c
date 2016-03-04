@@ -6,7 +6,7 @@
 /*   By: mfroehly <mfroehly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/31 07:16:58 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/02/20 14:19:49 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/03/04 13:46:39 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ static t_path	*new_path(unsigned int size_data)
 
 	rt = (t_path*)ft_memalloc(sizeof(t_path));
 	if (rt == 0)
-		exit (1);
-	rt->content = (unsigned long*)ft_memalloc(sizeof(unsigned long) * size_data);
+		put_error("Probleme malloc");
+	rt->content = (unsigned long*)ft_memalloc(sizeof(unsigned long) *
+			size_data);
 	if (rt->content == 0)
-		exit (1);
+		put_error("Probleme malloc");
 	return (rt);
 }
 
@@ -39,7 +40,8 @@ void			push_path(t_app *app, unsigned int unit)
 		app->last_path = app->last_path->next;
 	}
 	app->last_path->unit = unit;
-	make_or(app->last_path->content, &app->identity.data[unit * app->nbr_long], app->nbr_long);
+	make_or(app->last_path->content, &app->identity.data[unit * app->nbr_long],
+			app->nbr_long);
 	app->nbr_path++;
 }
 
@@ -57,7 +59,8 @@ void			travel_path(t_app *app, unsigned long *old, unsigned int unit)
 		app->last_path = app->last_path->next;
 	}
 	make_or(app->last_path->content, old, app->nbr_long);
-	make_or(app->last_path->content, &app->identity.data[unit * app->nbr_long], app->nbr_long);
+	make_or(app->last_path->content, &app->identity.data[unit * app->nbr_long],
+			app->nbr_long);
 	app->last_path->unit = unit;
 	app->nbr_path++;
 }
@@ -99,43 +102,6 @@ void			is_solution(t_app *app, t_path *path)
 		app->full_last->next->previous = app->full_last;
 		app->full_last = app->full_last->next;
 	}
-	//app->full_last->next = 0;
 	app->nbr_path--;
 	app->nbr_full++;
-}
-
-void			print_full(t_app *app)
-{
-	unsigned int	i;
-	unsigned int	nbr_full;
-	t_path			*tmp;
-
-	tmp = app->full_first;
-	i = 0;
-	nbr_full = app->nbr_full;
-	while (i < nbr_full && tmp)
-	{
-		ft_printf("%3u : ", tmp->size);
-		print_data(tmp->content, app->nbr_long);
-		tmp = tmp->next;
-		i++;
-	}
-}
-
-void			print_paths(t_app *app)
-{
-	unsigned int	i;
-	unsigned int	nbr_path;
-	t_path			*tmp;
-
-	tmp = app->first_path;
-	i = 0;
-	nbr_path = app->nbr_path;
-	while (i < nbr_path && tmp)
-	{
-		ft_printf("%3u : ", tmp->unit);
-		print_data(tmp->content, app->nbr_long);
-		tmp = tmp->next;
-		i++;
-	}
 }

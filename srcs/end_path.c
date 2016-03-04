@@ -1,20 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   end_path.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mfroehly <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/04 14:25:25 by mfroehly          #+#    #+#             */
+/*   Updated: 2016/03/04 14:25:55 by mfroehly         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
 static unsigned int	what_id(t_app *app, unsigned long *data)
 {
-	unsigned int 	i;
+	unsigned int	i;
 
 	i = 0;
 	while (i < app->size)
 	{
-		if (and_test(data, &app->identity.data[i * app->nbr_long], app->nbr_long))
+		if (and_test(data, &app->identity.data[i * app->nbr_long],
+					app->nbr_long))
 			return (i);
-			i++;
+		i++;
 	}
 	return (-1);
 }
 
-static void	make_end_path_array(t_app *app, unsigned id)
+static void			make_end_path_array(t_app *app, unsigned id)
 {
 	unsigned int	i;
 	unsigned int	current;
@@ -41,7 +54,7 @@ static void	make_end_path_array(t_app *app, unsigned id)
 	free(tmp);
 }
 
-void	make_end_paths_array(t_app *app)
+void				make_end_paths_array(t_app *app)
 {
 	unsigned int	i;
 

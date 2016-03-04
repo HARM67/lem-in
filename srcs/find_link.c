@@ -6,7 +6,7 @@
 /*   By: mfroehly <mfroehly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/31 06:57:36 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/02/20 20:31:49 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/03/04 14:24:23 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,11 @@ void	find_link(t_app *app, unsigned int nbr)
 	{
 		while (i < size)
 		{
-		
-//			if (and_test(&app->mtrx.data[i * nbr_long], &app->identity.data[paths->unit * nbr_long], app->nbr_long) &&
-//			(and_test(paths->content, &app->identity.data[i * nbr_long], app->nbr_long) == 0 || i == app->out))
-//				travel_path(app, paths->content, i);
-			if (and_test(&app->mtrx.data[i * nbr_long], &app->identity.data[paths->unit * nbr_long], nbr_long) &&
-			(and_test(app->used, &app->identity.data[i * nbr_long], nbr_long) == 0 || i == app->out))
+			if (and_test(&app->mtrx.data[i * nbr_long],
+					&app->identity.data[paths->unit * nbr_long], nbr_long) &&
+			(and_test(app->used, &app->identity.data[i * nbr_long], nbr_long) ==
+				0 || i == app->out))
 			{
-				//print_data(paths->content, app->nbr_long);
 				travel_path(app, paths->content, i);
 			}
 			i++;
@@ -55,9 +52,12 @@ void	find_link(t_app *app, unsigned int nbr)
 	}
 	while (paths)
 	{
-		make_or(app->used, &app->identity.data[paths->unit * nbr_long], app->nbr_long);
-		if (and_test(paths->content, &app->identity.data[app->in * nbr_long], app->nbr_long)
-		&& and_test(paths->content, &app->identity.data[app->out * nbr_long], app->nbr_long))
+		make_or(app->used, &app->identity.data[paths->unit * nbr_long],
+				app->nbr_long);
+		if (and_test(paths->content, &app->identity.data[app->in * nbr_long],
+					app->nbr_long)
+		&& and_test(paths->content, &app->identity.data[app->out * nbr_long],
+			app->nbr_long))
 		{
 			last = paths;
 			is_solution(app, paths);

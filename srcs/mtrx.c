@@ -6,7 +6,7 @@
 /*   By: mfroehly <mfroehly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/31 06:16:34 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/02/20 15:58:18 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/03/04 14:22:24 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	init_mtrx(t_mtrx *mtrx, unsigned int size)
 {
 	mtrx->size = size;
-
 	mtrx->nbr_long = size / 64;
 	if (size % 64)
 		mtrx->nbr_long++;

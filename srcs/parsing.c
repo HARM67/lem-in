@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mfroehly <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/04 14:21:08 by mfroehly          #+#    #+#             */
+/*   Updated: 2016/03/04 14:21:12 by mfroehly         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
 void		skip_space(char **str)
 {
-	while (**str == ' '|| **str == '\t')
+	while (**str == ' ' || **str == '\t')
 		(*str)++;
 }
 
@@ -32,7 +44,8 @@ int			check_comment_line(char **str)
 
 	tmp = *str;
 	skip_space(&tmp);
-	if (*tmp == '#' && ft_strncmp(tmp, "##start", 7) && ft_strncmp(tmp, "##end", 5))
+	if (*tmp == '#' && ft_strncmp(tmp, "##start", 7) &&
+			ft_strncmp(tmp, "##end", 5))
 	{
 		free(*str);
 		return (1);
@@ -60,11 +73,8 @@ void		read_ant(t_app *app, char *line)
 void		read_file(t_app *app)
 {
 	char			*line;
-	unsigned int	i;
 
-	i = 0;
-	app->read_mode = 9;
-	while (get_next_line(0, &line) >= 0 )
+	while (get_next_line(0, &line) >= 0)
 	{
 		if (line == 0)
 			break ;
@@ -75,7 +85,7 @@ void		read_file(t_app *app)
 		if (app->read_mode == 9)
 			read_ant(app, line);
 		else if (app->read_mode <= 2)
-			read_case(app, line, &i);
+			read_case(app, line);
 		if (app->read_mode == 3)
 			prepare_data(app);
 		if (app->read_mode == 4)

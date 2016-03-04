@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   choose_paths.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mfroehly <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/04 14:26:25 by mfroehly          #+#    #+#             */
+/*   Updated: 2016/03/04 14:26:27 by mfroehly         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
 static int	check_all(t_app *app, t_path *path, unsigned int iteration)
@@ -9,7 +21,7 @@ static int	check_all(t_app *app, t_path *path, unsigned int iteration)
 	tmp = app->path_selected_temp;
 	while (i < iteration + 1)
 	{
-		if (and_test(path->content, tmp[i]->content,app->nbr_long))
+		if (and_test(path->content, tmp[i]->content, app->nbr_long))
 			return (0);
 		i++;
 	}

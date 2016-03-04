@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operation.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mfroehly <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/04 14:21:40 by mfroehly          #+#    #+#             */
+/*   Updated: 2016/03/04 14:21:50 by mfroehly         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
 void	make_or(unsigned long *d1, unsigned long *d2, unsigned int nbr_long)
@@ -12,7 +24,8 @@ void	make_or(unsigned long *d1, unsigned long *d2, unsigned int nbr_long)
 	}
 }
 
-void	make_and_reverse(unsigned long *d1, unsigned long *d2, unsigned int nbr_long)
+void	make_and_reverse(unsigned long *d1, unsigned long *d2,
+		unsigned int nbr_long)
 {
 	unsigned int	i;
 

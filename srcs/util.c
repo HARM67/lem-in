@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mfroehly <mfroehly@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mfroehly <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/30 19:15:58 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/03/04 14:24:51 by mfroehly         ###   ########.fr       */
+/*   Created: 2016/03/04 14:10:21 by mfroehly          #+#    #+#             */
+/*   Updated: 2016/03/04 14:11:37 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int	main(int ac, char **av)
+void	clean_spaces(char *str)
 {
-	t_app	app;
-
-	ft_bzero(&app, sizeof(t_app));
-	app.ac = ac;
-	app.av = av;
-	init_app(&app);
-	run_app(&app);
-	return (0);
+	while (*str)
+	{
+		if (*str == ' ' || *str == '\t')
+			*str = 0;
+		str++;
+	}
 }

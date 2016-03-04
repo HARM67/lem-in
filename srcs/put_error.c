@@ -6,7 +6,7 @@
 /*   By: mfroehly <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/04 06:51:45 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/03/04 07:05:27 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/03/04 14:13:13 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,5 @@ void	put_error(char *str)
 	if (str == 0)
 		ft_putendl_fd("Error", 2);
 	ft_putendl_fd(str, 2);
-	exit (1);
+	exit(1);
 }

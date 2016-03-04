@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing3.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mfroehly <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/03/04 14:12:10 by mfroehly          #+#    #+#             */
+/*   Updated: 2016/03/04 14:17:48 by mfroehly         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
 static int	read_block(t_app *app, char **array, unsigned int nbr)
@@ -48,18 +60,9 @@ static int	read_other(t_app *app, char *array, unsigned int n)
 	return (1);
 }
 
-static void	clean_spaces(char *str)
+void		read_case(t_app *app, char *line)
 {
-	while (*str)
-	{
-		if (*str == ' ' || *str == '\t')
-			*str = 0;
-		str++;
-	}
-}
-
-void read_case(t_app *app, char *line, unsigned int *n)
-{
+	static int		n = 0;
 	unsigned int	rt;
 	unsigned int	i;
 	unsigned int	count;
@@ -68,30 +71,49 @@ void read_case(t_app *app, char *line, unsigned int *n)
 	i = 0;
 	rt = 0;
 	count = ft_strcount(line, ' ');
-	if (read_other(app, line, *n))
+	if (read_other(app, line, n))
 		;
 	else if (count == 3)
 	{
 		array = ft_strsplit(line, ' ');
-		rt = read_block(app, array, *n);
+		rt = read_block(app, array, n);
 		while (i < count)
 			free(array[i++]);
 		free(array);
-		*n += rt;
+		n += rt;
 	}
 	else
 		app->read_mode = 3;
 }
 
-int	read_tube(t_app *app, char *line)
+static int	read_tube2(t_app *app, int a, int b)
+{
+	unsigned int	nbr_long;
+
+	nbr_long = app->nbr_long;
+	if (a == -1 || b == -1)
+	{
+		app->read_mode = 5;
+		return (1);
+	}
+	make_or(&app->mtrx.data[a * nbr_long], &app->identity.data[b * nbr_long],
+			nbr_long);
+	make_or(&app->mtrx.data[b * nbr_long], &app->identity.data[a * nbr_long],
+			nbr_long);
+	return (0);
+}
+
+int			read_tube(t_app *app, char *line)
 {
 	char			**tube;
 	unsigned int	count;
-	unsigned int	nbr_long;
-	int				a;
-	int				b;
+	int				rt;
 
-	nbr_long = app->nbr_long;
+	if (ft_strcount(line, ' ') != 1)
+	{
+		app->read_mode = 5;
+		return (-1);
+	}
 	count = ft_strcount(line, '-');
 	if (count != 2 || line[0] == '#' || line[0] == 'L')
 	{
@@ -102,20 +124,9 @@ int	read_tube(t_app *app, char *line)
 	tube = ft_strsplit(line, '-');
 	clean_spaces(tube[0]);
 	clean_spaces(tube[1]);
-	a = what_nbr(app, tube[0]);
-	b = what_nbr(app, tube[1]);
-	if (a == -1 || b == -1)
-	{
-		app->read_mode = 5;
-		while (count--)
-			free(tube[count]);
-		free(tube);
-		return (1);
-	}
-	make_or(&app->mtrx.data[a * nbr_long], &app->identity.data[b * nbr_long], nbr_long);
-	make_or(&app->mtrx.data[b * nbr_long], &app->identity.data[a * nbr_long], nbr_long);
+	rt = (read_tube2(app, what_nbr(app, tube[0]), what_nbr(app, tube[1])));
 	while (count--)
 		free(tube[count]);
 	free(tube);
-	return (0);
+	return (rt);
 }

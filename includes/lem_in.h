@@ -6,7 +6,7 @@
 /*   By: mfroehly <mfroehly@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/30 19:16:29 by mfroehly          #+#    #+#             */
-/*   Updated: 2016/03/04 07:02:42 by mfroehly         ###   ########.fr       */
+/*   Updated: 2016/03/04 14:16:51 by mfroehly         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ void					list_to_array(t_app *app);
 /*
 ** parsing3.c
 */
-void 					read_case(t_app *app, char *line, unsigned int *n);
+void 					read_case(t_app *app, char *line);
 int						read_tube(t_app *app, char *line);
 /*
 ** block.c
@@ -214,4 +214,9 @@ void					calc_stroke(t_app *app);
 ** put_error.c
 */
 void					put_error(char *str);
+
+/*
+** util.c
+*/
+void					clean_spaces(char *str);
 #endif
